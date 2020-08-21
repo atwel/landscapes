@@ -41,29 +41,30 @@ def Make_Lon(DF_Landscape, M, D, Num_Perturbs):
 
 
 
-for params in [(10,2),(10,5),(10,8)]:
-    print("starting ", params, "at", datetime.datetime.now())
+def run_dirichlet_experiment():
+    for params in [(10,2),(10,5),(10,8)]:
+        print("starting ", params, "at", datetime.datetime.now())
 
-    N = params[0]
-    K = params[1]
-    ##First define a landscape, then notice all the maximas (it prinds the number of maxima)
+        N = params[0]
+        K = params[1]
+        ##First define a landscape, then notice all the maximas (it prinds the number of maxima)
 
-    for I in range(10):
-        #NKLand1 = make_NK_land(N=N,K=K)
-        #DFWithMaximas = Local_Maxima_Locations(NKLand1)
-        
-        concentration_params = [10,10,10,100,100,10,10,10,10,10]
-        assert len(concentration_params) == N, "The dirichlet params are not the same count as N"
-        dirichland = make_Dirichland(N,K, concentration_params)
-        DFWithMaximas = Local_Maxima_Locations(dirichland)
-        DFWithMaximas.to_csv("N-{}_K={}_I={}_mapping_Dirich.csv".format(N,K,I))
+        for I in range(10):
+            #NKLand1 = make_NK_land(N=N,K=K)
+            #DFWithMaximas = Local_Maxima_Locations(NKLand1)
+
+            concentration_params = [10,10,10,100,100,10,10,10,10,10]
+            assert len(concentration_params) == N, "The dirichlet params are not the same count as N"
+            dirichland = make_Dirichland(N,K, concentration_params)
+            DFWithMaximas = Local_Maxima_Locations(dirichland)
+            DFWithMaximas.to_csv("N-{}_K={}_I={}_mapping_Dirich.csv".format(N,K,I))
 
 
-        LONMatrix = Make_Lon(DFWithMaximas,M = 1,D = 2,Num_Perturbs = 500)
+            LONMatrix = Make_Lon(DFWithMaximas,M = 1,D = 2,Num_Perturbs = 500)
 
-        with open("N-{}_K={}_I={}_dirich.csv".format(N,K,I), "w") as f:
-            f.write(LONMatrix.to_csv())
-    print("ended at", datetime.datetime.now())
+            with open("N-{}_K={}_I={}_dirich.csv".format(N,K,I), "w") as f:
+                f.write(LONMatrix.to_csv())
+        print("ended at", datetime.datetime.now())
 
 """for params in [[10,0,8]], [15,0,10]]:
     print("starting ", params, "at", datetime.datetime.now())
