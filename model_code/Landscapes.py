@@ -404,7 +404,8 @@ def Local_Maxima_Locations(df):
             #print('Local Maxima found')
             Num_Local_Max += 1
         #Append the focal row at the end
-    print(Num_Local_Max)
+    if Num_Local_Max ==0:
+        print(df.Fitness)
     return df
 
 def Count_Local_Maxima(df):
