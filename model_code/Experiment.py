@@ -82,7 +82,7 @@ def run_dirichlet_experiment():
         DFWithMaximas = Local_Maxima_Locations(layered_land)
 
 
-        LONMatrix = Make_Lon(DFWithMaximas,M = 1,D = 2,Num_Perturbs = 500)
+        LONMatrix = Make_Lon(DFWithMaximas,M = 1,D = 2,Num_Perturbs=500)
 
         with open("N-{}_K1={}_K2={}_I={}.csv".format(N,K1,K2,I), "w") as f:
             f.write(LONMatrix.to_csv())
