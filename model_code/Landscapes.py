@@ -7,7 +7,7 @@ import itertools
 import operator
 from scipy import stats
 import itertools as it
-import networkx as nx
+#import networkx as nx
 from collections import defaultdict
 
 
