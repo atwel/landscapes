@@ -184,18 +184,21 @@ Hill Climb will take a given position then look at neighbors to find next highes
 #One finds the maxima of all your neighobrs when taking a step, and the other finds the first highest neighbor.
 
 """
-def Hill_Climb_To_Max(Position,df, M):
+def Hill_Climb_To_Max(Position,df, M, step_max = 500):
     #Loops until you reach a maxima
-    while df.loc[str(Position)].Maxima==0:
-
+    steps = 0
+    while df.loc[str(Position)].Maxima==0 and steps < step_max:
         #Identify the Neighbors (distance of M from initial position row)
-        Neighbors = df[df['Location'].apply(lambda row : sum(abs(np.array(row)-np.array(df.loc[str(Position)].Location)))==M)]        #Get the maximum fitness value of the neighbors
+        Neighbors = df[df['Location'].apply(lambda row : sum(abs(np.array(row)-np.array(df.loc[str(Position)].Location)))==M)]
+        #Get the maximum fitness value of the neighbors
 
         Neighbors_Max = max(Neighbors.Fitness) #fitness is indexed at 0 here for some reason
-            ##Find the highest neighbor, then go to it
+        ##Find the highest neighbor, then go to it
         if Neighbors_Max > df.loc[str(Position)].Fitness: #fitness is indexed at 1 here for some reason
             Position = Neighbors['Fitness'].idxmax()
+        steps +=1
 
+    print("hill climb step count", steps)
     return Position
 
 
