@@ -1,0 +1,104 @@
+\title{The Dirichlet Dot Product landscape}
+
+
+\author{Jon Atwell\\}
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Features of the NK model}
+
+Kauffman's NK model was proposed to capture interactions between alleles in DNA. In this setting, there are epistatic interactions between alleles, meaning the protein defined by the whole segment depends on the (nucleo)-base present at all alleles in the segment. The model skips modeling the protein and instead goes straight to defining the fitness of the protein. To do this, it looks at a segment of length $N$ and then defines a substring length parameter $K$. The epistatic interactions for a given allele are then restricted to K other alleles, and each of the $2^{K+1}$ permutations is assigned a fitness drawn uniform at random.
+
+The choice to assign fitness this way was justified by noting that we have little-to-no knowledge about the interaction effects. Which interactions are present is arbitrary for the same reason. Valuable work has gone into modeling the interaction structure (c.f. Rivkin and Siggelkow), but to our knowledge studying the effects of different distributions over the fitness value of the substrings has not been done. [Someone has to have done some of this...we should look into it.]
+
+A straightforward implication of this formulation is that changing a single bit within the substring has the same expected effect on substring fitness as changing all of them, suggesting the model places significantly more weight on higher order interaction effects than the main effects. Indeed, Buzas and Dinitz link the NK model to linear regression models with higher order interaction effects and show that for low K models the main effects are dominant. For higher K, when the interactions actually come into play, the higher order interactions have the same expected magnitude as the main effects.
+
+Finding evidence of such effects in an empirical setting would be quite shocking, but our goal is not to critique the model specification. Instead we focus the chief emergent feature of the landscape, \textit{ruggedness}, or the count of local optima. It is this feature that figures large in management literature because of the putative inability of boundedly rational agents to conduct intelligent search when local optima abound. While that may well be the case, the tunable parameter of the NK model alters more than ruggedness.
+
+As noted above it increases the importance of higher order interaction effects and decreases the importance of main effects, which has consequences for the macroscopic structure. In particular, the NK landscape has a ``central massif'' for low K in which local optima cluster in the search space around the global optimum, but as K increases this local optima become dispersed around the space in small clusters. Leaving those smaller clusters through local search is unlikely and long distance search is likely to results in being in very similar clusters, not the one with the global optimum. {All of this is coming from Herrman, Ochoa and Rothlauf, 2016}
+
+These results that the primary source of search failure or frustration is the restructuring of the local optima networks, not the presence of many local optima. We propose here a model that allows us to disentangle the effects of local optima count and their correlations within space. The Dirichlet distribution plays a crucial element in the setup so we next introduce it.
+
+\subsection*{What is the Dirichlet distribution?}
+
+The Dirichlet family of distributions is the multivariate Beta distribution, which is defined by K, the number of dimensions or categories and $\boldsymbol\alpha$, a K-length vector of a single positive real \{\alpha_1, alpha_2, ...,\alpha_K\}.  Each $\alpha_i$ in this $\boldsymbol\alpha$ vector of \textit{concentration} parameters determines the mean for the values along the corresponding dimension of draws from the distribution. The mean is  $\frac{\alpha_i}{\sum_{i}^{K} \alpha_i}$. Accordingly, when $a_i = a_j$ for all $i, j$  the expected value of a draw from the dirichlet is $1/K$ for all dimensions.
+
+When the $\alpha$`s are not the same, $E[X_i] = \frac{\alpha_i}{\alpha_0}$ where $\alpha_0 = \sum_{i}^{K} \alpha_i$. Accordingly dimensions corresponding higher $\alpha$`s have greater expected values.\\
+
+The variance is the interesting moment of the family. It is defined as follows:
+$Var[X] = \frac{\tilde{\alpha_i}(1-\tilde{\alpha_i})}{1 + \alpha_0}$
+where $\alpha_0 = \sum{\alpha_i}$ and $\tilde{\alpha_i} = \frac{\alpha_i}{\alpha_0}$\\
+
+Because the denominator is $\alpha_0 + 1$, $Var[X_i]$ is inversely related the sum of the concentration parameters. So the variances for $\alpha = 1$ (i.e. the symmetrical case) are roughly 100 times greater than $\alpha = 100$.
+
+\subsection*{Defining the Dirichlet Dot Product Landscape}
+
+We define a fitness landscape using two entities; a Euclidean Vector Space $\vec{E_N}$ over $\mathbb{R}^{N}$ and a Dirichlet $K$ of dimension $N$ parameterized by $\boldsymbol\alpha$. $N$ is the same positive integer in both entities and corresponds to the dimensionality of search problem, as in the NK model.\\~\\
+
+Let location $\langle \ell\rangle \in \vec{E_N}$.\\~\\
+
+Let $X  = (X_1, X_2,..., X_N)$ be a draw from the Dirichlet $K$ with $\boldsymbol\alpha$.\\~\\
+
+The fitness of location $\langle \ell \rangle$ is then simply \\
+ $F(\langle \ell \rangle) ={\langle \ell \rangle}^T \bullet X$ where $\bullet$ denotes the dot product (i.e. $ \ell_1 \cdot X_1 + \ell_2 \cdot X_2 +...+\ell_N \cdot X_N$ )\\
+
+Note that because the vector space is affine, the dimensions can be reoriented so that (1,1,...1) and (0,0,...,0) are no longer the maximum and minimum; an arbitrary mask can be applied to the locations without effects that properties of the landscape.
+
+The family of landscapes encompassed by this model is expansive because, as defined, $\vec{E}$ covers the real number line. In discussing the model, we will consider $\langle 0,1 \rangle ^N$ (the continuous unit vector space) because of the ease of interpretability. In the analysis, we will restrict ourselves to the hypercube $\{ 1,0 \} ^N$, as is standard in the NK literature. Other interesting domains include the following:
+\begin{itemize}
+  \item $\{-1,1 \} ^N$, allowing for negative contributions
+  \item $\{-1,0,1 \} ^N$, allowing null and negative contributions
+  \item $[-1,1]$, continuous case but with negative contributions
+  \item $[0, M_i]$, with $M_i \neq M_j$ for some $i, j$ (i.e. allowing asymmetrical domains)
+  \item $\{ 0, 1/M, 2/M...1 \} ^N$, a discretized domain.
+  \item Any combinations of the above, to emphasize the heterogeneity of component contributions.
+\end{itemize}
+
+
+
+
+\subsection*{Implications}
+
+
+
+Coupling in this model is quite different than in the NK model. Rather than having precise functional interdependencies (with imprecise effects), we assume that there are interdependencies across all components and instead control the strength of the interdependencies though the sum of the $\alpha_i$ values. Mathematically, the components are interdependent because the fitness contribution of a given component is assigned through the Dirichlet draw and, in virtue of all probabilities needing to sum to one, an increase in one component comes at the expense of one or more other components.
+
+ Starting with the case when $\alpha=1$ (for all dimensions, the symmetrical and flat dirichlet) the variance of the value for each dimension is $.00\overline{81}$. The expected value of the difference between the value of two draws from the dirichlet is approximately .09 [I simulated this...is there a simple reason it should be is?]. In expectation half of the changes are positive, half negative.
+
+The Dirichlet is not the sole source of the structure of interdependencies, however. The contribution to fitness of a given attribute/dimension depends on the states of all dimensions. To see this clearly, let $F(\ell_j)$ be the fitness of a location $\ell_j$ and let $X_{i,\ell_j}$ be the value of the Dirichlet draw $X_{i,\ell_j}$ for the $i$th dimension and for location $\ell_j$.
+
+Now consider the location $\ell_1 = (1,0,0,0,0,0,0,0,0,0)$. The fitness of the location, $F_{\ell_1}$, is the value of the draw for only the first dimension, $X_{1,\ell_1}$ because all other dimensions are multiplied by zero before being added. Next consider $\ell_2 = (1,1,0,0,0,0,0,0,0,0)$.  The second dimension of the draw, $X_{2,\ell_2}$ is added to the overall fitness for a value of $F(\ell_2)$. But crucially, $F(\ell_2) \neq F(\ell_1) + X_{2,\ell_2}$
+because $X_{\ell_2}$ is a different draw from the Dirichlet than $X_{\ell_1}$ and the contribution of first dimension is changed (i.e. $X_{1,\ell_1} \neq X_{1,\ell_2}$).
+
+The expected value of the addition of the contribution of the second dimension is greater than the expected change in contribution of the first dimension. Accordingly, the main effect of changing the state of the second dimension to 1 is positive. However, because the variance in the Dirichlet draw, there is a difference between total fitness of the location $F(\ell_2)$ and the fitness of $\ell_1 + X_{2,\ell_2}$. This difference, $X_{1,\ell_1} - X_{1,\ell_2}$, is the magnitude of the interaction between dimensions/components 1 and 2. It can be either positive or negative, suggesting positive or negative complementarity between them.
+
+Expanding this reasoning to all dimensions, we can say that $X_{1,\ell_1} - X_{1,\ell_j}$ is the net complementarity of dimension 1 with all other dimensions. One can reconstruct the individual complementaries by traversing the shortest path from the location with a single 1 on the focal dimension, call it $\ell_H$ (for home), to arbitrary location $\ell_j$. The differences between fitnesses at $\ell_H$ and the locations within a single step are the first order interaction terms. The difference between the locations one step away and those two steps away, minus the first order interaction term is the value of the second order interaction and so on.
+
+In order for a landscape to be complex, there need to be negative complementaries and the Dirichlet ensures these are present in expectation for lower values of alpha. If there weren't consistently negative complementaries, the search problem is straightforward hillclimbing. Such negative complementaries are present in the NK model, increasingly so as K increases. However, they are substantial in magnitude for high K and have the same expected magnitude as the main effects. This yields ruggedness, but also wide swings in fitness and a disintegration of macroscopic structure.
+
+ The Dirichlet dot product model permits control of the expected value of the main effect relative to the higher order effects, which allows one to create landscape ensembles with both ruggedness and structure to the search problem. For example, when $N=10$ and $\alpha = 2$, the distance from the top quartile of fitness scores to the global maximum and the autocorrelation structure is closely comparable to NK models with K=0. However, whereas the latter has a single global and local optimum, the former has s a count of local optima on the order of 50. It is both rugged and searchable.
+
+The Dirichlet dot product also has parameters for which is in comparable to high K NK models. For example, when $N=10$ and $\boldsymbol\alpha$ = 100, it has a single global and local optimum and comparable autocorrelation structure.
+
+It also permits exploring the consequences of asymmetrical $\alpha$'s. This is a natural choice, as so components are likely to impact fitness more than others. The fact that the variance decreases as the weight increases also is a natural correspondence in so far as functionally central choices are less likely to be affected by peripheral choices.
+
+\subsection*{Notes about fitness distributions}
+Why the low concentration parameters lead to a bi-modal distribution of fitnesses:
+
+For concentration parameters <1, the density of the PDF is highest in the corners of the simplex. The lower the parameter, the more extreme the shift. So while the expected value of a draw for single dimension is still 1/N and the sampling process is ergodic, 1 out of every N draws the value for the dimension is close to 1. The other N-1 draws are close to zero.
+
+So let's make the concentration parameters extreme, say alpha=.0001 so that a draw is more or less the selection of a single dimension as certain. When thinking about the dot product then, we should note that for a given bit/characteristics in the location vector, in half of the landscape that bit is equal to 1 and for the other half it is 0. This suggests that the dimension that gets a 1 from the dirichlet draw will have a corresponding location bit equal to one with probably .5. Then in taking the dot product of the dirichlet draw and the location, the fitness will be equal to 1. The other times it is 0. Hence the bimodal PDF of the fitness values.
+
+When alpha is not that extreme, say .05, there are some locational bits that have a positive dirichlet weighting and their inclusion in the dot product yields fitnesses that start to fill in the range between 0 and 1.
+
+I think we can extend this style of reasoning to the other extreme alpha values. When alpha is high, say 100, the expected value of any given dimension is again. 1/N and the variance is $N/100*(1/100*N+1)$. So for $N=10$, $var(a_i) = .00008$. Accordingly, the primary driver on the fairly normally distributed fitness values is the location vector. The weighting for each is the same so the dot product depends on the locations only. Because the hamming distances are distributed normally, the fitness are too.
+
+
+
+\end{document}
