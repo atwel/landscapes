@@ -7,7 +7,7 @@ import itertools
 import operator
 from scipy import stats
 import itertools as it
-import networkx as nx
+#import networkx as nx
 from collections import defaultdict
 
 
@@ -219,7 +219,7 @@ def Hill_Climb_To_Max_One_Step(Position,df, M):
 def Hill_Climb_First(Position,df, M):
         #Loops until you reach a maxima
     #loop until no better neighbors
-    num_better_neighbors = 0
+    num_better_neighbors = 1
     while num_better_neighbors>0:
 
         #Identify the Neighbors (distance of M from initial position row)
