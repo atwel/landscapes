@@ -1,1 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="777" height="480" style="">                                    <title>my vector image</title>                                    <!-- Created with Vector Paint - http://www.vectorpaint.yaks.com/ https://chrome.google.com/webstore/detail/hnbpdiengicdefcjecjbnjnoifekhgdo -->                                    <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="#FFFFFF" stroke="none"/>                                <g class="currentLayer" style=""><title>Layer 1</title><path fill="#4a90d6" stroke-width="2" stroke-linejoin="round" stroke-dashoffset="" fill-rule="nonzero" marker-start="" marker-mid="" marker-end="" id="svg_5" d="M70.39048415153503,9.701047012557986 L100.11270415153504,65.11772701255798 L133.44603415153503,125.30291701255797 L70.39048415153503,156.83068701255797 L7.334924151535034,125.30291701255797 L70.39048415153503,9.701047012557986 zL200.66826415153503,158.45106701255798 " style="color: rgb(0, 0, 0);" class="selected" transform="rotate(-180 104.0015869140625,84.0760498046875) "/></g></svg>
+<!-- 
+    Cursor Down  
+-->
+
+
+<path fill="#4a90d6" stroke-width="2" stroke-linejoin="round" stroke-dashoffset="" fill-rule="nonzero" marker-start="" marker-mid="" marker-end="" id="svg_5" d="M70.39048415153503,9.701047012557986 L100.11270415153504,65.11772701255798 L133.44603415153503,125.30291701255797 L70.39048415153503,156.83068701255797 L7.334924151535034,125.30291701255797 L70.39048415153503,9.701047012557986 zL200.66826415153503,158.45106701255798 " style="color: rgb(0, 0, 0);" class="selected" transform="rotate(-180 104.0015869140625,84.0760498046875) "/>
+
+
+##
+<!-- 
+    Filled Circle  
+-->
+
+<path fill="#4a90d6" fill-opacity="1" stroke="none" stroke-opacity="1" stroke-width="2" stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset="" fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end="" d="M156,89.5 C156,61.59944751381215 177.9281767955801,39 205,39 C232.0718232044199,39 254,61.59944751381215 254,89.5 C254,117.40055248618785 232.0718232044199,140 205,140 C177.9281767955801,140 156,117.40055248618785 156,89.5 Z" id="svg_2"/>
+
+<!-- Donut  -->
+<path fill="#4a90d6" stroke-width="2" stroke-linejoin="round" stroke-dashoffset="" fill-rule="nonzero" marker-start="" marker-mid="" marker-end="" id="svg_1" d="M190.44582361651422,139.85237828045175 L190.44582361651422,139.85237828045175 C190.44582361651422,95.0930358542393 226.73044744427793,58.808412026475125 271.4897898704941,58.808412026475125 L271.4897898704941,58.808412026475125 C292.983976883989,58.808412026475125 313.5978360522259,67.34694322975896 328.79651688873685,82.54563494464377 C343.9952140428066,97.74433209871923 352.53375612448394,118.35817494938338 352.53375612448394,139.85237828045175 L352.53375612448394,139.85237828045175 C352.53375612448394,184.61171526747285 316.2491322967083,220.89634453442756 271.4897898704941,220.89634453442756 L271.4897898704941,220.89634453442756 C226.73045288348314,220.89634453442756 190.44582361651422,184.61171526747285 190.44582361651422,139.85237828045175 zM230.96780674350956,139.85237828045175 L230.96780674350956,139.85237828045175 C230.96780674350956,162.23204405436562 249.11012953577745,180.37436140744106 271.4897898704941,180.37436140744106 C293.8694665227988,180.37436140744106 312.0117729974891,162.23204405436562 312.0117729974891,139.85237828045175 C312.0117729974891,117.47271250653758 293.8694556444243,99.33039515346188 271.4897898704941,99.33039515346188 L271.4897898704941,99.33039515346188 C249.11012953577745,99.33039515346188 230.96780674350956,117.47271794573123 230.96780674350956,139.85237828045175 z" style="color: rgb(34, 34, 34);"/>
+
+
+
+<!-- Horizontal Rectangle  -->
+
+<rect fill="#4a90d6" stroke-width="2" stroke-linejoin="round" stroke-dashoffset="" fill-rule="nonzero" id="svg_1" x="77" y="31" width="208" height="105" style="color: rgb(34, 34, 34);"/>
+
+<!-- Vertical Rectangle  -->
+
+<rect fill="#4a90d6" stroke-width="2" stroke-linejoin="round" stroke-dashoffset="" fill-rule="nonzero" id="svg_1" x="77" y="31" width="107.99999046325684" height="186.31868362426758" style="color: rgb(34, 34, 34);" class=""/><rect fill="#4a90d6" stroke-width="2" stroke-linejoin="round" stroke-dashoffset="" fill-rule="nonzero" id="svg_3" x="176" y="83" width="0" height="0" style="color: rgb(34, 34, 34);"/>
