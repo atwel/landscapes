@@ -1,0 +1,39 @@
+def get_dirichlet_2_fitness(current_permutation,K,concentration_params):
+    #generate a dirichlet distribution
+    N=len(current_permutation)
+    our_dirichlet = stats.dirichlet(concentration_params)
+    #We only have one instation of the permutation: current_permutation
+    genome_fitness = 0
+    #get dirichlet draw
+
+    #print(dir_draw)
+    for currentCharacteristic in np.arange(N):
+        #get the fitness indices from each k based upon local gene values
+        localgenes = current_permutation[currentCharacteristic:currentCharacteristic+K+1]
+        #print(localgenes)
+        #loop through to next if were are near the nth index
+        if currentCharacteristic+K+1 > N:
+            #print(currentCharacteristic-(N-K)+1)
+            localgenes = np.append(localgenes,current_permutation[0:currentCharacteristic-(N-K)+1])
+            #print(localgenes)
+            indices = list(range(currentCharacteristic,N)) + list(range(currentCharacteristic-(N-K)+1))
+        else:
+            indices = list(range(currentCharacteristic,currentCharacteristic+K+1))
+        #get index fitness  is stored at
+        interactIndex = ((2**(np.arange(K+1)*(localgenes)))*localgenes).sum()
+       # print(indices)
+
+        dir_draw = our_dirichlet.rvs()[0]
+        currentValues= dir_draw[indices]
+        #print(currentValues)
+        #print(dir_draw[indices])
+        #print(currentValues.sum())
+        #print(dir_draw[indices].sum())
+            #print(indices,currentValues)
+
+        #add current value to the running fitness total
+
+        genome_fitness += sum(currentValues)
+
+   # print(genome_fitness)
+    return(genome_fitness)
