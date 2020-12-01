@@ -1,4 +1,4 @@
-\title{The Dirichlet Dot Product landscape}
+\title{Macroscopic features of the NK Landscape and Why Ruggedness Isn't Really the Problem for Search.}
 
 
 \author{Jon Atwell\\}
@@ -11,7 +11,41 @@
 
 \maketitle
 
+\subsection*{Search on Fitness Landscapes}
+Organizations face complicated decision-making environments. Often the challenges are linked to competition, but another fundamental obstacle is the fact that changing one aspect of the firm's organization or operation can have unpredictable effects on the performance of the whole. This unpredictability comes from the diverse interdependencies in the components, whether of the organization itself or its final products. Few, if any, components are siloed operationally from the others and altering the state of one alters the performance of others. If these interdependencies were known in advance, the effects would be predicable and decisions could assess the effects of all changes prior to making a decision. But given a plethora of interdependencies and the limited ability of managers to gather information about them, such interdependencies necessitate that organizations learn through search and experimentation.
+
+The need to learn by doing raises the question of how to best search for good, or even optimal, solutions. Levinthal \citeyearpar{Levinthal1997} started to formalize this question by importing Kauffman's NK model of genetic interdependencies \citep{Kauffman1989} to management research. The NK model and the question of how to best search has loomed large in the organizational learning literature since ( see \cite{Baumann2019} for a review). The NK model has in fact been so fruitful that some have labeled a classic model \cite{Borgonovo2020}. This paper takes the position that understanding how to best search the relevant decision-making environment is the fundamental question of organizational learning, but that the study of search behaviors can never be decoupled from the study of landscape over which search is taking place. The features of the landscape determine how successful various search behaviors will be.
+This claim is the central impetus
+
+ Modifications to the NK and alternative landscapes have been proposed and results clearly indicate that best search behavior is indeed highly dependent upon the features of the landscape \cite{Rivkin2007,Winter2007,Callander2011,Rahmandad2019}. Some have gone so far as to suggest landscape design as goal of organizations \cite{Levinthal1999}.
+
+The theoretical problem of organizational learning is thus both a question of what type of environment the firm is facing and how to best search it. If the firm knows what type of environment it is facing, the question of how to search is much more tractable, but from a firm's perspective the former is generally not knowable and it must learn about both the features of the environment and how to search it by doing.
+
+
+But the learning strategy firms deploy can be influenced by the theoretical work on the topic and this paper argues that a key insight of the NK model is misleading. That putative insight is that ruggedness---the existence of many local optima---is an impediment to successful search or imitation because local optima confuse boundedly rational actors. The assumption is that any particular local optimum looks better than all alternatives if the actor cannot construct knowledge about broader patterns in the landscape. That form of bounded rationality, however, might not meaningfully describe human actors. Certainly, human rationality is bounded by a variety of cognitive limitations, but if human cognition is good at one thing, it is extracting patterns and trends. This coarsening of diverse information into abstract models is what allows us to problem solve better than any other species and even natural selection itself in some domains. So while model-based search is boundedly rational insofar as models can be constructed based on samples and not complete information, thereby necessarily accommodating errors, humans might not be stymied by local features like ruggedness.
+
+In models of search on the canonical NK landscape, actors generally do not perform model-based search. Instead they are imbued with something that might be called Markovian rationality; they forget prior states and base next moves solely on information accessible from the current state. This ensures that progress is slow and often needs rules about when to throw any sense of rationality into the wind and roll the dice to start over from a random point. Similar behavior has been observed in human subject experiments \cite{Billinger2014, Vuculescu2017} and this suggests that humans are not model-based learners, are stymied by ruggedness and are in fact Markovianly rational.
+
+This paper argues no such inferences can be made based on the NK model because the primary tunable parameter of the model tunes both micro and macroscopic features of the landscape. We demonstrate that the macroscopic changes are antithetical to model-based learning and are in fact the cause of suboptimal search outcomes, not ruggedness. The upshot of this analysis is that ruggedness is likely not true obstacle in search and can be in some settings a source of positive learning because it encourages broader sampling for the purpose of constructing models.
+
+
+
+
+
+
+mostly from interdependencies between subunits, but scholars of organizations have yet to deeply consider the \textit{manifestations} of that complexity. (For a recent exception, see \citet{Rahmandad2019} in MGMT studies. See \citet{Newman1998} in biology.) In particular, while the NK model of rugged landscapes \cite{Kauffman1989,Levinthal2007,Rivkin2000} has been generative for theorizing about organizational decision-making and design (one of the two most fundamental models in the behavioral theory of the firm, along with the garbage can model), remarkably little has been said within the management and organizational sciences literature about the mathematical characteristics of the model and how those relate to search behavior.
+
+The feature of ``ruggedness'' for which the NK model is known has been well documented, but ruggedness is a micro-level feature of the landscape. As a model encoding interdependencies, the NK landscape naturally tunes macro-level and other micro-level features in the course of tuning ruggedness. Thus, effects on outcomes variables related to search cannot be directly attributed to ruggedness because the other features are not controlled for. On first blush, this might seem beside the point. After all Levinthal's goal in importing the model from biology was to make the point that interdependencies make search and decision making hard. While that is true, Kauffman's decision maker in the model was nature herself (in spite of the model not introducing any of the selective dynamics found in population genetics.) Natural selection, while an incredible search tool, does not learn in a model-based way has humans do and is easily stymied by local optima.
+
+In that sense, local ruggedness the primary feature Kauffman needed to make his point and macro-level features did not really matter.
+
+
+
+
+
 \subsection*{Features of the NK model}
+
+
 
 Kauffman's NK model was proposed to capture interactions between alleles in DNA. In this setting, there are epistatic interactions between alleles, meaning the protein defined by the whole segment depends on the (nucleo)-base present at all alleles in the segment. The model skips modeling the protein and instead goes straight to defining the fitness of the protein. To do this, it looks at a segment of length $N$ and then defines a substring length parameter $K$. The epistatic interactions for a given allele are then restricted to K other alleles, and each of the $2^{K+1}$ permutations is assigned a fitness drawn uniform at random.
 
