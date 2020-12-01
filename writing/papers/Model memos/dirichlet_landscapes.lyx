@@ -1,0 +1,1123 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass amsart
+\begin_preamble
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{babel}
+\usepackage{fancyhdr}
+\usepackage{soul}
+% Change comments in PDF notes
+\usepackage{pdfcomment}
+\usepackage{environ}
+\RenewEnviron{comment}{\pdfcomment{\BODY}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[CO]{Dirichlet Landscapes}
+\fancyhead[CE]{}
+\fancyhead[RO,LE]{\thepage}
+
+\setlength{\headheight}{12pt}
+
+%\captionsetup{tableposition=top,figureposition=bottom,font=small}
+\topmargin=-0mm 
+\textheight=220mm 
+\textwidth=154mm 
+\oddsidemargin=5mm
+
+\newcommand{\textoverline}[1]{$\overline{\mbox{#1}}$}
+
+\date{\today}
+
+\author{Jonathan Atwell}
+%\address{Stanford GSB}
+%\email{jatwell@stanford.edu}
+%\thanks{blabla}
+\end_preamble
+\use_default_options true
+\begin_removed_modules
+theorems-ams
+\end_removed_modules
+\begin_modules
+eqs-within-sections
+figs-within-sections
+theorems-std
+pdfcomment
+customHeadersFooters
+endnotes
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1.5in
+\rightmargin 1in
+\bottommargin 1.5in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip bigskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Dirichlet Landscapes
+\end_layout
+
+\begin_layout Section
+Defining the Dirichlet Dot Product Landscape
+\end_layout
+
+\begin_layout Standard
+Let the fitness landscape be defined as follows.
+ Let 
+\begin_inset Formula $\lambda=\left(\lambda_{1},\dots,\lambda_{N}\right)\in\Lambda\subseteq\mathbb{R}^{N}$
+\end_inset
+
+ be a location on the landscape and 
+\begin_inset Formula $X\sim Dir(\alpha)$
+\end_inset
+
+ be an 
+\begin_inset Formula $N$
+\end_inset
+
+-dimensional random vector on the sample space 
+\begin_inset Formula $\Omega$
+\end_inset
+
+.
+ Consider a state 
+\begin_inset Formula $\omega\in\Omega$
+\end_inset
+
+, we denote by 
+\begin_inset Formula $x_{i}=X_{i}(\omega)$
+\end_inset
+
+ a realization of the 
+\begin_inset Formula $i$
+\end_inset
+
+-th random variable in 
+\begin_inset Formula $X$
+\end_inset
+
+ and, accordingly, 
+\begin_inset Formula $x=\left(x_{1},\dots,x_{N}\right)$
+\end_inset
+
+ is a realization of 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ In what follows we restrict our analysis to the case 
+\begin_inset Formula $\Lambda=\left\{ 0,1\right\} ^{N}$
+\end_inset
+
+, that is, where the set of possible locations on the landscape is discrete
+ and corresponds to the set of the 
+\begin_inset Formula $2^{N}$
+\end_inset
+
+ edges (vertices, right?) of an 
+\begin_inset Formula $N$
+\end_inset
+
+-th dimensional hypercube.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+Depth}{3} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+Height}{3} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+Width}{3} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{figure}[!htb] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+coordinate (O) at (0,0,0); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+coordinate (A) at (0,
+\backslash
+Width,0); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+coordinate (B) at (0,
+\backslash
+Width,
+\backslash
+Height); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+coordinate (C) at (0,0,
+\backslash
+Height); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+coordinate (D) at (
+\backslash
+Depth,0,0); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+coordinate (E) at (
+\backslash
+Depth,
+\backslash
+Width,0); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+coordinate (F) at (
+\backslash
+Depth,
+\backslash
+Width,
+\backslash
+Height); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+coordinate (G) at (
+\backslash
+Depth,0,
+\backslash
+Height);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[dashed,gray,fill=yellow!80] (O) -- (C) -- (G) -- (D) -- cycle;% Bottom
+ Face 
+\backslash
+draw[dashed,gray,fill=blue!30] (O) -- (A) -- (E) -- (D) -- cycle;% Back
+ Face 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[dashed,gray,fill=red!10] (O) -- (A) -- (B) -- (C) -- cycle;% Left Face
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[dashed,gray,fill=red!20,opacity=0.8] (D) -- (E) -- (F) -- (G) -- cycle;%
+ Right Face 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[dashed,gray,fill=red!20,opacity=0.6] (C) -- (B) -- (F) -- (G) -- cycle;%
+ Front Face 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[dashed,gray,fill=red!20,opacity=0.8] (A) -- (B) -- (F) -- (E) -- cycle;%
+ Top Face
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [thick,above] at (0,0,0) 					{$(0,0,0)$}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [thick,above] at (0,
+\backslash
+Width,0)				{$(0,1,0)$}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [thick,above] at (0,
+\backslash
+Width,
+\backslash
+Height)			{$(0,1,1)$}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [thick,above] at (0,0,
+\backslash
+Height)				{$(0,0,1)$}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [thick,above] at (
+\backslash
+Depth,0,0)				{$(1,0,0)$}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [thick,above] at (
+\backslash
+Depth,
+\backslash
+Width,0)			{$(1,1,0)$}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [thick,above] at (
+\backslash
+Depth,
+\backslash
+Width,
+\backslash
+Height)	{$(1,1,1)$}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [thick,above] at (
+\backslash
+Depth,0,
+\backslash
+Height)		{$(1,0,1)$};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+filldraw[black] (0,0,0) circle (2pt); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+filldraw[black] (0,
+\backslash
+Width,0) circle (2pt); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+filldraw[black] (0,
+\backslash
+Width,
+\backslash
+Height) circle (2pt);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+filldraw[black] (0,0,
+\backslash
+Height) circle (2pt);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+filldraw[black] (
+\backslash
+Depth,0,0) circle (2pt);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+filldraw[black] (
+\backslash
+Depth,
+\backslash
+Width,0) circle (2pt);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+filldraw[black] (
+\backslash
+Depth,
+\backslash
+Width,
+\backslash
+Height) circle (2pt);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+filldraw[black] (
+\backslash
+Depth,0,
+\backslash
+Height) circle (2pt);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{The set $
+\backslash
+Lambda$ of locations when $N=3$}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{figure}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We define the fitness 
+\begin_inset Formula $f$
+\end_inset
+
+ of a given location as 
+\begin_inset Formula 
+\begin{align*}
+f: & \Lambda\rightarrow\mathbb{R^{+}}\\
+ & \lambda\mapsto\lambda\cdot x
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This definition of fitness, on the one hand, allows to conceive the performance
+ of a given configuration as a convex combination of the values of its dimension
+s: this conveys the idea that not all dimensions contribute equally to fitness.
+ On the other hand, an 
+\emph on
+indirect
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A direct notion of tradeoff would be embedded by constraining the total
+ number of resources to be allocated.
+\end_layout
+
+\end_inset
+
+
+\emph default
+ idea of tradeoff can also be inferred by this formulation: at any fixed
+ number of non-zero dimensions, the fact that different dimensions contribute
+ differently may direct search with the aim of remaining at least at the
+ same value of fitness.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+I see what you mean with the tradeoffs.
+ If the search space is restricted to locations with $m < N$ 1's, it becomes
+ a constrained optimization problem.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Marginal contributions (or the 
+\emph on
+added value
+\emph default
+) of each dimension to fitness can be naturally defined in this setup by
+ considering the contribution of the focal dimension to total fitness.
+ Formally, let 
+\begin_inset Formula $f_{i}(\lambda_{i})$
+\end_inset
+
+ denote the section of the fitness function at the 
+\begin_inset Formula $i$
+\end_inset
+
+-th dimension.
+ The contribution of dimension 
+\begin_inset Formula $i$
+\end_inset
+
+ to fitness is defined as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Delta^{i}=f_{i}(1)-f_{i}(0)
+\]
+
+\end_inset
+
+which isolates the variation in overall fitness as dimension 
+\begin_inset Formula $i$
+\end_inset
+
+ varies from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Note that the definition extends also to the case of multi-valued coordinates
+ and to the continuous case.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+Note that because the fitness involve the product of the location value
+ 
+\begin_inset Formula $f_{i}(0)$
+\end_inset
+
+= 0 and 
+\begin_inset Formula $\Delta^{t}=f_{i}(1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+About interdependence and complementarities –
+\series default
+ Our definition of fitness is in accordance with the NK modeling literature
+ in management in that it maintains the assumption of fitness be 
+\series bold
+increasing in all of the components
+\series default
+ of the 
+\begin_inset Formula $N$
+\end_inset
+
+-dimensional vector of locations coordinates.
+ However, this 
+\backslash
+st{hypothesis makes it hard to explore negative} formulation does not allow
+ the exploration of complementarities/interdependencies without imposing
+ a polynomial functional form for fitness (Rahmandad, 2019).
+\end_layout
+
+\begin_layout Standard
+In fact, the 
+\begin_inset Quotes eld
+\end_inset
+
+microeconomics-way
+\begin_inset Quotes erd
+\end_inset
+
+ of defining complementarities (also exploited in Rahmandad, 2019) is through
+ cross-derivatives of the fitness function (the sign of the cross derivatives
+ dictates the direction of the complementarity between dimensions).
+ This direction is not pursuable in this setup due to the definition of
+ the fitness function (all cross-derivatives are null here).
+\end_layout
+
+\begin_layout Standard
+In this setting, interdependence between dimensions is also indirect, as
+ opposed to the NK-landscape framework, and derives from the nature of the
+ Dirichlet weights.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+I don't understand how you're differentiating between interdependence and
+ complementarity here.
+ Following the reasoning of Rahmandad, I think of complementaries being
+ the source of interdependence.
+ The NK model creates interdependencies to get at the idea of complementaries
+ but doesn't model the complementaries directly.
+ Rahmandad does, but that doesn't mean the notion is totally absent from
+ Kaufmann.
+ I read Buzas and Dinitz 2014 as trying to undercover the implicit model
+ of interactions/complementaries.
+ (For low K the interactions have smaller coefficients than the main effects,
+ but that's not the case in for higher K.
+ I think that's a bad feature of the model.
+ ) But how do you, VRC, see them as being distinct? 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A possible solution is to let not only the weights, but also the locations
+ coordinates, be random.
+ In particular we can model the coordinates locations as Bernoulli random
+ variables.
+ Interdependence among them can then be modeled through the use of a copula.
+ This construction not only allows to tune interdependence between variables
+ more directly than in the NK-landscape framework, but also allows to obtain
+ an indirect study of complementarities between dimensions.
+ In fact, the structure of correlation between dimensions embeds considerations
+ of mutual change in the location coordinates.
+ Due to the assumption of monotonicity of the fitness function, this can
+ be interpreted as two components being synergetic or antagonistic, in probabili
+stic terms.
+\end_layout
+
+\begin_layout Subsection
+When Dirichlet Weights are Location-Dependent
+\end_layout
+
+\begin_layout Standard
+Note that the setup described above prescribes the use of a unique Dirichlet
+ random vector to determine the value of the random weights at every location
+ of the landscape.
+ Another possibility is that of considering a different random vector be
+ assigned to each different locations.
+ This operationalization would translate the consideration that importance
+ of the various dimensions can change as one moves from a location to another
+ one.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Note that this reasoning can be akin to the idea of inconsistency of preferences
+ in decision theory.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hence, let us now consider the case where a different draw from the Dirichlet
+ 
+\begin_inset Formula $X\sim Dir(\alpha)$
+\end_inset
+
+ is assigned to every single location.
+ Let 
+\begin_inset Formula $M=2^{N}$
+\end_inset
+
+ denote the number of locations and 
+\begin_inset Formula $m\in M$
+\end_inset
+
+ is the 
+\begin_inset Formula $m$
+\end_inset
+
+-th location on the landscape.
+ This implies that the weights are now an 
+\begin_inset Formula $N\times M$
+\end_inset
+
+ matrix with entries 
+\begin_inset Formula $x_{n}^{m}=x_{n}(\omega^{m})$
+\end_inset
+
+ denoting the weight of the 
+\begin_inset Formula $n$
+\end_inset
+
+-th dimension at the 
+\begin_inset Formula $m$
+\end_inset
+
+-th location 
+\begin_inset Formula $\lambda^{m}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The fitness at every location 
+\begin_inset Formula $\lambda^{m}$
+\end_inset
+
+ is therefore now given
+\begin_inset Formula 
+\begin{align*}
+f^{m} & =\lambda^{m}\cdot x^{m}\\
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Let us consider for illustration the case 
+\begin_inset Formula $N=3$
+\end_inset
+
+, so that 
+\begin_inset Formula $M=8$
+\end_inset
+
+.
+ The fitness at all the locations is the following:
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\begin{align*}
+f(1,0,0) & =x_{1}^{1}\\
+f(1,1,0) & =x_{1}^{2}+x_{2}^{2}\\
+f(1,0,1) & =x_{1}^{3}+x_{3}^{3}\\
+f(1,1,1) & =x_{1}^{4}+x_{2}^{4}+x_{3}^{4}=1\\
+f(0,0,0) & =0\\
+f(0,1,0) & =x_{2}^{6}\\
+f(0,0,1) & =x_{3}^{7}\\
+f(0,1,1) & =x_{2}^{8}+x_{3}^{8}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+It follows that, in this case, the overall contribution
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+I'm inclined to disagree with this conception of contribution, see below.
+\end_layout
+
+\end_inset
+
+ of the first coordinate to overall fitness is equal to
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+f_{1}(1)-f_{1}(0)=x_{1}^{1}+x_{1}^{2}+x_{2}^{2}+x_{1}^{3}+x_{3}^{3}+1-(x_{2}^{6}+x_{3}^{7}+x_{2}^{8}+x_{3}^{8})
+\]
+
+\end_inset
+
+The next two equations are for the first model, the one with a single Dirichlet
+ draw
+\end_layout
+
+\begin_layout Example
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+The next two equation are for the first model, the one with a single Dirichlet
+ draw
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\begin{align*}
+f_{1}(1)-f_{1}(0) & =x_{1}+x_{1}+x_{2}+x_{1}+x_{3}+1-(x_{2}+x_{3}+x_{2}+x_{3})\\
+ & =4x_{1}+2x_{2}+2x_{3}-2x_{2}-2x_{3}\\
+ & =4x_{1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+and the average contribution of the first dimension is 
+\begin_inset Formula 
+\[
+\frac{f_{1}(1)-f_{1}(0)}{4}=x_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Pure Contributions to fitness 
+\end_layout
+
+\begin_layout Example
+We will consider the 
+\emph on
+pure
+\emph default
+ fitness contribution of a dimension, but it is important to first discuss
+ the meaning of the state of a given dimension i, 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+.
+ In the NK model, there is no interpretative significant to the states because
+ the labelling of the states does not In the current formulation 
+\begin_inset Formula $\lambda_{i}\in\{0,1\}.$
+\end_inset
+
+ When 
+\begin_inset Formula $\lambda_{i}=0$
+\end_inset
+
+, the dimension i does not contribute to the fitness.
+ 
+\end_layout
+
+\begin_layout Example
+By construction,
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+f(0,0,0)=x_{1}^{5}\cdot0+x_{2}^{5}\cdot0+x_{3}^{5}\cdot0=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+meaning one can think of location 
+\begin_inset Formula $(0,0,0)$
+\end_inset
+
+ as min
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\begin{align*}
+f(0,0,0) & =x_{1}^{5}\cdot0\\
+f(1,0,0) & =x_{1}^{1}\\
+f(0,1,0) & =x_{2}^{6}\\
+f(1,1,0) & =x_{1}^{2}+x_{2}^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Hence the increase in fitness that derives from moving from location 
+\begin_inset Formula $(0,0,0)$
+\end_inset
+
+ to location 
+\begin_inset Formula $(1,1,0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+f(1,1,0)-f(0,0,0)=x_{1}^{2}+x_{2}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+The average increase in fitness that derives from moving from location 
+\begin_inset Formula $(0,0,0)$
+\end_inset
+
+ to location 
+\begin_inset Formula $(1,1,0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+**Search driven by expectations considerations? Choice of concentration
+ parameter tells you about the characteristics of the business environment
+ about the relative importance (on average) of the different dimensions.
+\end_layout
+
+\end_body
+\end_document
