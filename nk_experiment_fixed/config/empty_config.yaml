@@ -1,0 +1,55 @@
+treatments: []
+factorTypes:
+  - _id: 3XXYdcCQEon6KWNr2
+    name: playerCount
+    description: The Number of players participating in the given game.
+    required: true
+    type: Integer
+    min: 1
+  - _id: qEdFqBDTuN8JHGg4q
+    name: numSubmissions
+    description: Number of submissions per round
+    required: true
+    type: Integer
+    min: 1
+  - _id: 7xgwjWcLELQzKdBNk
+    name: numRounds
+    description: Number of rounds/games
+    required: true
+    type: Integer
+    min: 1
+  - _id: vf8nnHkoQKXpc6uz6
+    name: rewardScale
+    description: Scales rewards (default is 0.1)
+    required: true
+    type: Number
+  - _id: criJvARqgkmFFT2YM
+    name: functionGame1
+    description: Fitness Function for game 1
+    required: true
+    type: String
+  - _id: fY8F4Ah5Cw6Mjqv97
+    name: functionGame2
+    description: Fitness function for game 2
+    required: true
+    type: String
+  - _id: oWPKTTwYYvWroFLea
+    name: functionGame3
+    description: Fitness Function for game 3
+    required: true
+    type: String
+factors:
+  - _id: jgfpe8gCg3rbZ7eA6
+    name: default
+    value: 1
+    factorTypeId: 3XXYdcCQEon6KWNr2
+  - _id: ECqbQLavHpCCmwtEs
+    name: default
+    value: 0.1
+    factorTypeId: vf8nnHkoQKXpc6uz6
+lobbyConfigs:
+  - name: default
+    timeoutType: lobby
+    timeoutInSeconds: 300
+    timeoutStrategy: fail
+    gameLobbyIds: []

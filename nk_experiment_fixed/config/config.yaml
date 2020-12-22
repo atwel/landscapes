@@ -1,0 +1,127 @@
+treatments:
+  - name: test
+    factorIds:
+      - tXBWjvh2HH9xD9ybG
+      - jvxh2HtXBWH9D9ybG
+      - CLdCjgmSa2eAqkZoR
+      - iToM7mpFAKMtNsfGy
+      - Hpg9GpR8CMFgGhTEY
+      - anfTBjPFBKPPFTN5P
+  - name: full
+    factorIds:
+      - 8cYgPebstK8rtiK4X
+      - jvxh2HtXBWH9D9ybG
+      - CLdCjgmSa2eAqkZoR
+      - iToM7mpFAKMtNsfGy
+      - Hpg9GpR8CMFgGhTEY
+      - anfTBjPFBKPPFTN5P
+factorTypes:
+  - _id: ZKCcx5bCbME8Hdqbv
+    name: playerCount
+    description: The Number of players participating in the given game.
+    required: true
+    type: Integer
+    min: 1
+  - _id: EBPXTqLjizeaFu2qE
+    name: numSubmissions
+    description: Number of submissions per round.
+    required: true
+    type: Integer
+    min: 1
+    max: 30
+  - _id: teWTxnREKoWmBpWEb
+    name: numRounds
+    description: Number of Landscapes
+    required: true
+    type: Integer
+    min: 2
+    max: 3
+  - _id: RrRbk95imEdNC4TDb
+    name: functionGame1
+    description:  Name of the fitness function for Game 1
+    required: false
+    type: String
+  - _id: ns4xoLFtxE93K28rE
+    name: functionGame2
+    description:  Name of the fitness function for Game 2
+    required: false
+    type: String
+  - _id: TCHSrpJdLTuyqvhhu
+    name: functionGame3
+    description:  Name of the fitness function for Game 3
+    required: false
+    type: String
+factors:
+  - _id: jvxh2HtXBWH9D9ybG
+    name: solo
+    value: 1
+    factorTypeId: ZKCcx5bCbME8Hdqbv
+  - _id: tXBWjvh2HH9xD9ybG
+    name: short
+    value: 5
+    factorTypeId: EBPXTqLjizeaFu2qE
+  - _id: 8cYgPebstK8rtiK4X
+    name: long
+    value: 25
+    factorTypeId: EBPXTqLjizeaFu2qE
+  - _id: BdvT3AsNeH3T8LdGX
+    name: 2_games
+    value: 2
+    factorTypeId: teWTxnREKoWmBpWEb
+  - _id: CLdCjgmSa2eAqkZoR
+    name: 3_games
+    value: 3
+    factorTypeId: teWTxnREKoWmBpWEb
+  - _id: iToM7mpFAKMtNsfGy
+    name: dot_easy
+    value: dot_easy
+    factorTypeId: RrRbk95imEdNC4TDb
+  - _id: uy9u7L3i5EYhrXuWq
+    name: dot_hard
+    value: dot_hard
+    factorTypeId: RrRbk95imEdNC4TDb
+  - _id: ExNbZJmwHyknzPfac
+    name: NK_easy
+    value: NK_easy
+    factorTypeId: RrRbk95imEdNC4TDb
+  - _id: o9d9oFtcFd2XWJjjg
+    name: NK_hard
+    value: NK_hard
+    factorTypeId: RrRbk95imEdNC4TDb
+  - _id: 8Jt7hGQBocMPhKDxT
+    name: dot_easy
+    value: dot_easy
+    factorTypeId: ns4xoLFtxE93K28rE
+  - _id: N7wgraDwD8fWphZqC
+    name: dot_hard
+    value: dot_hard
+    factorTypeId: ns4xoLFtxE93K28rE
+  - _id: aHhByYWw3ruaK3TiG
+    name: NK_easy
+    value: NK_easy
+    factorTypeId: ns4xoLFtxE93K28rE
+  - _id: Hpg9GpR8CMFgGhTEY
+    name: NK_hard
+    value: NK_hard
+    factorTypeId: ns4xoLFtxE93K28rE
+  - _id: HpiM3EPB7HdPnfoQp
+    name: dot_easy
+    value: dot_easy
+    factorTypeId: TCHSrpJdLTuyqvhhu
+  - _id: anfTBjPFBKPPFTN5P
+    name: dot_hard
+    value: dot_hard
+    factorTypeId: TCHSrpJdLTuyqvhhu
+  - _id: BdvT3AsNeH3TauhGX
+    name: NK_easy
+    value: NK_easy
+    factorTypeId: TCHSrpJdLTuyqvhhu
+  - _id: sDLbqKkSvt3oGEon6
+    name: NK_hard
+    value: NK_hard
+    factorTypeId: TCHSrpJdLTuyqvhhu
+lobbyConfigs:
+  - timeoutType: lobby
+    timeoutInSeconds: 300
+    timeoutStrategy: fail
+    gameLobbyIds: []

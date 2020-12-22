@@ -1,0 +1,32 @@
+.historyImage{
+  background-color: red;
+
+}
+.gridImage-selected{
+
+    opacity: 1;
+    height:25px;
+    width:25px;
+
+}
+.gridImage-unselected{
+    opacity:0;
+    height:25px;
+    width:25px;
+}
+.submission {
+
+}
+
+.most_recent{
+  background-color: lightblue;
+
+}
+.most_recent_selection{
+  width: 200px;
+  outline-width: 3px;
+  outline-style: solid;
+  outline-color: lightblue;
+  outline-offset: -3px;
+
+}
