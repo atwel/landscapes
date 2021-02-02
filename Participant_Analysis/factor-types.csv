@@ -1,0 +1,7 @@
+﻿_id,name,required,description,type,min,max,createdAt,archivedAt
+dbTc4AdTPB3o56iSM,playerCount,true,The Number of players participating in the given game.,Integer,1,,2021-01-23T00:04:22Z,
+EBPXTqLjizeaFu2qE,numSubmissions,true,Number of submissions per round.,Integer,1,30,2021-01-23T00:07:25Z,
+teWTxnREKoWmBpWEb,numRounds,true,Number of Landscapes,Integer,2,3,2021-01-23T00:07:25Z,
+RrRbk95imEdNC4TDb,functionGame1,false,Name of the fitness function for Game 1,String,,,2021-01-23T00:07:25Z,
+ns4xoLFtxE93K28rE,functionGame2,false,Name of the fitness function for Game 2,String,,,2021-01-23T00:07:25Z,
+TCHSrpJdLTuyqvhhu,functionGame3,false,Name of the fitness function for Game 3,String,,,2021-01-23T00:07:25Z,

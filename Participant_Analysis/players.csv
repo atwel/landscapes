@@ -1,0 +1,3 @@
+﻿_id,bot,readyAt,timeoutStartedAt,timeoutWaitCount,exitStepsDone,exitAt,exitStatus,retiredAt,retiredReason,createdAt,data.introQuiz,data.exitQuiz,data.avatar,data.score
+rY9QgPCjc6heFtsmb,,,,,ExitSurvey,2021-01-23T00:06:00Z,failed,,,2021-01-23T00:05:54Z,"{""goal"":""true"",""selectorColor"":""true"",""bonus"":""true""}","{""task1"":""med"",""task2"":""easy"",""task3"":""hard"",""feedback"":""""}",,
+xJX5qnu97XNAfukBw,,2021-01-23T00:07:58Z,,,ExitSurvey,2021-01-23T00:10:49Z,finished,,,2021-01-23T00:07:52Z,"{""goal"":""true"",""selectorColor"":""true"",""bonus"":""true""}","{""task1"":""hard"",""task2"":""med"",""task3"":""easy"",""feedback"":""hh""}",/avatars/jdenticon/xJX5qnu97XNAfukBw,0
