@@ -2,8 +2,20 @@ library(tidyverse)
 
 library(jsonlite)
 
+###SEt Working directory
+#setwd("~/Documents/ResearchProjects/landscapes/Participant_Analysis")
 ##Read in current selection not data.selection
 df_player_stages<-read.csv('player-stages.csv')
+##read in players-csv
+df_players<-read.csv('players.csv')
+#rename to prolific id and playerid
+colnames(df_players)[2]<-'prolificId'
+colnames(df_players)[1]<-'playerId'
+
+#keep only those who finished
+df_players<-df_players[df_players$exitStatus=='finished',1:2]
+#Merge
+df_player_stages<-merge(df_player_stages,df_players,by.y ='playerId',by.x='playerId' ,no.dups=F)
 
 #convert submission column into the current selection and the score
 json_to_columns <- function(df, column){
@@ -20,6 +32,8 @@ json_to_columns <- function(df, column){
     bind_cols(json_df)
 }
 
+#DROP IF EMPTY
+df_player_stages <- df_player_stages[df_player_stages$data.submission != '', ]
 df_rounds_fixed<-json_to_columns(df_player_stages,data.submission)
 
 library(anytime)
@@ -28,8 +42,8 @@ library(anytime)
 df_stages<-read.csv('stages.csv')
 #merge with rounds
 colnames(df_stages)[1]<-'stageId'
+df_stages
 Merged_df<-merge(df_stages,df_rounds_fixed, no.dups=F)
-
 #get correct time formats
 Merged_df$startTimeAt<-anytime(Merged_df$startTimeAt)
 Merged_df$submittedAt<-anytime(Merged_df$submittedAt)
@@ -76,10 +90,17 @@ Merged_df$Score_Diff_2<-Merged_df$score-Merged_df$Previous2Score
 
 ##Now Get player-rounds which tells us the task difficulty ranking
 df_player_rounds<-read.csv('player-rounds.csv')
+#Get final score(remmber to subtract last score as it duplicates)
+df_player_rounds$Final_Score<-df_player_rounds$data.totalScore-df_player_rounds$data.curScore
 #keep pertinent data
-df_player_rounds<-df_player_rounds[,c('roundId','playerId','data.quiz')]
-#expand column
+df_player_rounds<-df_player_rounds[,c('roundId','playerId','data.quiz','data.totalScore','Final_Score')]
+#expand column but make sure its not empty
+df_player_rounds <- df_player_rounds[df_player_rounds$data.quiz != '', ]
+
 df_player_rounds<-json_to_columns(df_player_rounds,data.quiz)
+#merge with prolific Ids
+df_player_rounds<-merge(df_players,df_player_rounds)
+
 #merge
 Merged_df<-merge(Merged_df,df_player_rounds)
 
@@ -104,7 +125,6 @@ Rounds_To_Complete<-3
 Num_rounds_by_player$Completed_All_Rounds<-0
 Num_rounds_by_player[Num_rounds_by_player[,'num_rounds_player']==3,]$Completed_All_Rounds<-1
 
-
 #group by player and round id
 by_player_round_id <- Merged_df %>% group_by(playerId,roundId)
 Task_Ordering_Times <-by_player_round_id %>% summarise(
@@ -124,6 +144,7 @@ Task_Ordering_Times<-Task_Ordering_Times[order(Task_Ordering_Times['playerId'],(
 Num_Players <-nrow(Task_Ordering_Times)/3
 Task_Ordering_Times$condition<-c(rep(c('task1','task2','task3'),Num_Players))
 
+
 #convert from wide to long
 player_inputs_long <- gather(df_player_inputs, condition, measurement, data.task1:data.task3, factor_key=TRUE)
 #remove prefix in data
@@ -138,7 +159,6 @@ Merged_df<-Merged_df[ , !(names(Merged_df) %in% drops)]
 
 #Rename measurement as difficulty
 colnames(Merged_df)[colnames(Merged_df)=='measurement']<-'difficulty'
-
 
 ####NOW what I am missing is the data for landscape types. I will have to find a way to merge that in later.
 #For now let us presume I have some piece of data called 'landscape_type'
@@ -217,27 +237,45 @@ merged_gameid_treatment_factor<-merged_gameid_treatment_factor[merged_gameid_tre
 #Merge with merged df
 
 Final_Merger<-merge(Merged_df,merged_gameid_treatment_factor,on=c('condition,gameId'))
+##Analyze players we want to analyze
+Final_Merger$name
+#Get new column that is the submissions
+Final_Merger$submission<-as.numeric(sub('Submission |Reflection', '', Final_Merger$name))
 
 
-#merge by game id (X_Id in df_games and treatment game merge) and condition
-
-Stats_By_Landscsape <-Final_Merger %>% 
-  group_by(landscape_type) %>%
-  summarise(
-  avg_score = mean(score),
-  avg_step_size1 = mean(Step_Size_1[!is.na(Step_Size_1)]), #include !is.na so I dont include reflections or stages without data
-  avg_step_size2 = mean(Step_Size_2[!is.na(Step_Size_2)]),
-  avg_score_change1 = mean(Score_Diff_1[!is.na(Score_Diff_1)]),
-  avg_score_change2 = mean(Score_Diff_1[!is.na(Score_Diff_2)]),
-  time_taken = mean(time_taken[!is.na(time_taken)]),
-  mean_easy = sum(difficulty[name=='Reflection']=='easy')/3,
-  mean_hard = sum(difficulty[name=='Reflection']=='hard')/3,
-  mean_medium = sum(difficulty[name=='Reflection']=='med')/3
-)
 
 
-#Get stats to chart behavior round by round
-Stats_by_Submission <- Final_Merger %>% group_by(landscape_type,index) %>% #replace round_id with landscape type
+######NOW subset for the prolific profiles.
+################## GET PAYMENT AMOUNT
+
+########Get prolific completers, copy and paste here
+Prolific_Completers<-c('5fc2c8276bcebe503858d619','5ff56789238d4b8774c2dd5e','5a6fa72d9cdd180001775149','5f90869547ff2e159dd64902','55b6a2e5fdf99b350d57360e','5e7d7840f89874402cdb9ebe','572cd18388902e000e1e3fae','5df1bef511999f0ce6a28a05','5d9a09095223b6001809f1c9','5fb58d11a037f00cda417905','6008e6570f44505b2cfae696','5614460c7ffc8a000d811ab2','5fcf53e9196fbf275b2e8ada','5f97020f7a03b7055a8ef470','5bd4afa8654665000102e6db','5b29a05e6d03870001976bdb','57fdfb0456820500011017fc','5f42b557f859ca4b3395dc8b','5f0a9f170ad0d636d5a7d1ca','600a74055f76dc1a858efe06')
+
+##############RECODE BY USING PLAYER ID FROM PLAYERS>CSV BY TICKING BOX ON EMPIRICA
+Aggregated_payouts<-aggregate(df_player_rounds$Final_Score, by=list(prolificId=df_player_rounds$prolificId,df_player_rounds$playerId), FUN=sum)
+colnames(Aggregated_payouts)[2:3]<-c('playerId','payout')
+#round up
+roundUp <- function(x) ceiling((x*100))/100
+Aggregated_payouts$payout<-roundUp(Aggregated_payouts$payout)
+#subset to completers
+Aggregated_payouts[Aggregated_payouts$prolificId %in% Prolific_Completers,]
+write_csv(Aggregated_payouts[Aggregated_payouts$prolificId %in% Prolific_Completers,],'pilot_payouts.csv')
+
+#############################Get Pilot_Tester_DATA by ID
+
+Pilot_Tester_data<-Final_Merger[Final_Merger$prolificId %in% Prolific_Completers,]
+length(unique(Pilot_Tester_data$prolificId))
+
+save(Pilot_Tester_data,file='Pilot_Tester_Data.Rda')
+
+library("xlsx")
+write.xlsx(Pilot_Tester_data, file, sheetName = "Sheet1", 
+           col.names = TRUE, row.names = TRUE, append = FALSE)
+
+
+
+#GEt stats by submission
+Stats_by_Submission <-Pilot_Tester_data %>% group_by(landscape_type,submission) %>% #replace round_id with landscape type
   summarise(
     avg_score = mean(score),
     avg_step_size1 = mean(Step_Size_1[!is.na(Step_Size_1)]), #include !is.na so I dont include reflections or stages without data
@@ -246,6 +284,46 @@ Stats_by_Submission <- Final_Merger %>% group_by(landscape_type,index) %>% #repl
     avg_score_change2 = mean(Score_Diff_1[!is.na(Score_Diff_2)]),
     time_taken = mean(time_taken[!is.na(time_taken)]),
     name=name
-    )
-Stats_by_Submission
+  )
+
+
+
+
+library(ggplot2)
+
+ggplot()
+#plot average score
+Stats_by_Submission%>% ggplot( aes(x=submission, y=avg_score, group=landscape_type, color=landscape_type)) +
+  ggtitle('Average Score')+xlab('Submission')+ylab('Average Score (across players)')+
+  geom_line() 
+
+
+#plot average step size
+Stats_by_Submission%>% ggplot( aes(x=submission, y=avg_step_size1, group=landscape_type, color=landscape_type)) +
+  ggtitle('Average Step Size')+xlab('Submission')+ylab('Average step Size (across players)')+
+  geom_line() 
+
+Stats_by_Submission%>% ggplot( aes(x=submission, y=abs(time_taken), group=landscape_type, color=landscape_type)) +
+  ggtitle('Average Time Taken')+xlab('Submission')+ylab('Average Time Taken (across players)')+
+  geom_line() 
+
+Pilot_Tester_data$data.feedback[11]
+
+
+###Get summary Stats by landscape
+Stats_By_Landscsape <-Pilot_Tester_data %>% 
+  group_by(landscape_type) %>%
+  summarise(
+    avg_score = mean(score),
+    avg_step_size1 = mean(Step_Size_1[!is.na(Step_Size_1)]), #include !is.na so I dont include reflections or stages without data
+    avg_step_size2 = mean(Step_Size_2[!is.na(Step_Size_2)]),
+    avg_score_change1 = mean(Score_Diff_1[!is.na(Score_Diff_1)]),
+    avg_score_change2 = mean(Score_Diff_1[!is.na(Score_Diff_2)]),
+    time_taken = mean(time_taken[!is.na(time_taken)]),
+    Count_easy   = sum(difficulty[name=='Reflection'] =='easy'),
+    Count_hard   = sum(difficulty[name=='Reflection'] =='hard'),
+    Count_medium = sum(difficulty[name=='Reflection'] =='med')
+  ) 
+
+Stats_By_Landscsape
 

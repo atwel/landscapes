@@ -1,0 +1,8 @@
+﻿_id,name,required,description,type,min,max,createdAt,archivedAt
+ZKCcx5bCbME8Hdqbv,playerCount,true,The Number of players participating in the given game.,Integer,1,,2020-12-07T19:28:39Z,
+qEdFqBDTuN8JHGg4q,numSubmissions,true,Number of submissions per round,Integer,1,,2020-12-07T19:28:43Z,
+7xgwjWcLELQzKdBNk,numRounds,true,Number of rounds/games,Integer,1,,2020-12-07T19:28:43Z,
+vf8nnHkoQKXpc6uz6,rewardScale,true,Scales rewards (default is 0.1),Number,,,2020-12-07T19:28:43Z,
+criJvARqgkmFFT2YM,functionGame1,false,Fitness Function for game 1,String,,,2020-12-07T19:28:43Z,
+fY8F4Ah5Cw6Mjqv97,functionGame2,false,Fitness function for game 2,String,,,2020-12-07T19:28:43Z,
+oWPKTTwYYvWroFLea,functionGame3,false,Fitness Function for game 3,String,,,2020-12-07T19:28:43Z,
